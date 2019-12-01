@@ -1,3 +1,4 @@
+#if 1
 /*
 ID: aaronli2
 TASK: transform
@@ -34,3 +35,4 @@ int main() {
         for(int j=0;j<s;j++)
     return 0;
 }
+#endif

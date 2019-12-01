@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: ride
@@ -21,3 +22,4 @@ int main() {
     else fout<<"STAY"<<endl;
     return 0;
 }
+#endif

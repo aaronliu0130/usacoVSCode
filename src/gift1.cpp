@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: gift1
@@ -32,3 +33,4 @@ int main() {
     for(int i=0;i<NP;i++)fout<<group[i]<<" "<<balance[group[i]]<<endl;
     return 0;
 }
+#endif
