@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: test
@@ -17,3 +18,4 @@ int main() {
     fout << a+b << endl;
     return 0;
 }
+#endif

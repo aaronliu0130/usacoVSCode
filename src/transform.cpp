@@ -1,3 +1,4 @@
+#if 1
 /*
 ID: aaronli2
 TASK: transform
@@ -37,3 +38,4 @@ int main() {
     fout<<res<<endl;
     return 0;
 }
+#endif
