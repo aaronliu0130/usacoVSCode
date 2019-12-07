@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: milk2
@@ -42,3 +43,4 @@ int main() {
     fout<<maxa<<" "<<maxin<<endl;
     return 0;
 }
+#endif
