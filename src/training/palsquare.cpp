@@ -1,6 +1,7 @@
+#if 0
 /*
 ID: aaronli2
-TASK: dualpal
+TASK: palsquare
 LANG: C++11                 
 */
 #include <iostream>
@@ -26,22 +27,14 @@ string rev(string str){
     return str;
 }
 int main() {
-    ofstream fout ("dualpal.out");
-    ifstream fin ("dualpal.in");
-    int n;
-    fin>>n;
-    int s;
-    fin>>s;
-    ++s;//FAIL: It's >, not >=
-    for(;n&&s<=100000;++s){//Still not used to ++i in for loops
-        int times(0);
-        for(int base=2;base<=10;++base){
-            string str=baseConv(s,base);
-            if(str==rev(str)&&++times>=2){
-                --n;fout<<s<<endl;
-                break;
-            }
-        }
+    ofstream fout ("palsquare.out");
+    ifstream fin ("palsquare.in");
+    int base;
+    fin>>base;
+    for(int i=1;i<=300;i++){
+        string n=baseConv(i,base), n2=baseConv(i*i,base);
+        if(n2==rev(n2))fout<<n<<" "<<n2<<endl;
     }
     return 0;
 }
+#endif
