@@ -1,5 +1,6 @@
+#if 1
 /*
-ID: aaronli2
+ID: jerron
 TASK: whereami
 LANG: C++11
 */
@@ -7,46 +8,45 @@ LANG: C++11
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cassert>				//assert
 
 using namespace std;
-bool checkDupe(vector<string> &array){
-    for(int i=0;i<array.size();i++){
-        for(int j=i+1;j<array.size();j++){
-            if(array[i]==array[j])return true;
-        }
+
+int solve(const string & street){
+	int k = 0;
+	for (int i = 1; i < street.size(); ++i) {
+		for (; k <= i; ++k)
+			if (street.substr(0, i).find(street.substr(i - k + 1, k))
+					== string::npos)
+				break;
     }
-    return false;
+	return k;
 }
+
+int test(){
+//	return 1;
+	assert(solve("ABCDABC") == 4);
+	assert(solve("A") == 0);
+	assert(solve("AB") == 1);
+	assert(solve("AA") == 2);
+	assert(solve("ABB") == 2);
+	assert(solve("ABBCC") == 2);
+	assert(solve("") == 0);
+    cout<<"ok";
+    return 0;
+}
+
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
+	if(test()){
     ofstream fout ("whereami.out");
     ifstream fin ("whereami.in");
     int n;
     fin>>n;
-    vector<string> boxn;
-    for(int i=0;i<n;i++){
-        char c;
-        fin>>c;
-        string str(1,c);
-        boxn.push_back(str);
-    }
-    int k(1);
-    vector<string> temp(boxn);
-    string str;
-    while(k<n){
-        if(checkDupe(boxn)){
-            ++k;
-            boxn.clear();
-            for(int i=0;i<n;i+=k){
-                str.clear();
-                for(int j=0;j<k;j++){
-                    str+=temp[j+i];
-                }
-                boxn.push_back(str);
-            }
-        }else break;
-    }
-    fout<<k+1;
+    string street;
+    fin>>street;
+
+    fout<<solve(street);
+	}
     return 0;
 }
+#endif

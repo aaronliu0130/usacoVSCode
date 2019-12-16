@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: lineup
@@ -19,3 +20,4 @@ int main() {
     fout<<"Beatrice\nSue\nBelinda\nBessie\nBetsy\nBlue\nBella\nButtercup"<<endl;
     return 0;
 }
+#endif
