@@ -1,4 +1,4 @@
-#if 1
+#if 0
 /*
 ID: jerron
 TASK: whereami
@@ -24,7 +24,7 @@ int solve(const string & street){
 }
 
 int test(){
-//	return 1;
+	return 1;
 	assert(solve("ABCDABC") == 4);
 	assert(solve("A") == 0);
 	assert(solve("AB") == 1);
