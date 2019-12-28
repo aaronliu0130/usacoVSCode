@@ -1,6 +1,6 @@
 #if 0
 /*
-ID: aaronli2
+ID: jerron1
 TASK: transform
 LANG: C++11                 
 */
@@ -8,91 +8,92 @@ LANG: C++11
 #include <fstream>
 #include <string>
 #include <vector>
+#define PROG_ID "transform"
+
 using namespace std;
-class Square
-{
+
+class Square{
 public:
-    Square(size_t s) : sz(s), contents(s) {}
-    istream &read(istream &in)
-    {
-        for (auto i = 0; i < sz; ++i)
-            in >> contents[i];
-        return in;
-    }
-    size_t size() const
-    {
-        return sz;
-    }
-    static vector<string> transform(size_t operation, const vector<string> &contents)
-    {
-        auto sz = contents.size();
-        vector<string> newContents(sz, string(sz, 0));
-        auto getOp = [&newContents, &operation, &sz](int i, int j) -> decltype(newContents[0][0]) {
-            switch (operation)
-            {
-            case 1:
-                return newContents[j][sz - 1 - i];
-            case 2:
-                return newContents[sz - 1 - i][sz - 1 - j];
-            case 3:
-                return newContents[sz - 1 - j][i];
-            case 4:
-                return newContents[i][sz - 1 - j];
-            }
-            return newContents[0][0];
-        };
-        for (auto i = 0; i < sz; ++i)
-            for (auto j = 0; j < sz; ++j)
-                getOp(i, j) = contents[i][j];
-        return newContents;
-    }
-    bool equal(const vector<string> &a) const
-    {
-        if (a.size() != sz)
-            return 0;
-        for (auto i = 0; i < sz; ++i)
-            if (contents[i] != a[i])
-                return 0;
-        return 1;
-    }
-    bool equal(const Square &a) const
-    {
-        return a.equal(contents);
-    }
-    int find(const Square &target)
-    {
-        vector<string> tmp(sz);
-        for (auto i = 1; i <= 4; ++i)
-        {
-            tmp = transform(i, contents);
-            if (target.equal(tmp))
-                return i;
-        }
-        for (auto i = 1; i <= 3; ++i)
-            if (target.equal(transform(i, tmp)))
-                return 5;
-        if (equal(target))
-            return 6;
-        return 7;
-    }
+	Square(size_t size):sz(size),sq(size){}
+	istream& read(istream& is) {
+		for (auto i = sz - sz; i < sz; ++i)
+			is >> sq[i];
+		return is;
+	}
+	size_t size() const {
+		return sz;
+	}
+	static vector<string> transform(size_t op, const vector<string>&sq) {
+		auto sz = sq.size();
+		vector<string> nsq(sz, string(sz, 0));
+		auto proj = [&nsq,&op,&sz](int i,int j)->decltype(nsq[0][0]) {
+			switch(op) {
+				case 1: //90
+				return nsq[j][sz-1-i];
+				case 2://180
+				return nsq[sz-1-i][sz-1-j];
+				case 3://270
+				return nsq[sz-1-j][i];
+				case 4://reflection
+				return nsq[i][sz-1-j];
+			}
+			return nsq[0][0];
+		};
+		for (auto i = sz - sz; i < sz; ++i)
+			for (auto j = sz - sz; j < sz; ++j)
+				proj(i, j) = sq[i][j];
+		return nsq;
+	}
+	bool equal(const Square& rhs) const {
+		return rhs.equal(sq);
+	}
+	bool equal(const vector<string>& rhs) const {
+		if (rhs.size() != sz)
+			return false;
+		for (auto i = sz - sz; i < sz; ++i)
+			if (sq[i] != rhs[i])
+				return false;
+		return true;
+	}
+	int match(const Square& target);
 
 private:
-    size_t sz;
-    vector<string> contents;
+	size_t sz;
+	vector<string> sq;
 };
-istream &operator>>(istream &in, Square &contents)
-{
-    return contents.read(in);
+inline bool operator==(const Square& lhs, const Square& rhs) {
+	return lhs.equal(rhs);
 }
-int main()
-{
-    ofstream fout("transform.out");
-    ifstream fin("transform.in");
-    int s;
-    fin >> s;
-    Square map(s), target(s);
-    fin >> map >> target;
-    fout << map.find(target) << endl;
-    return 0;
+inline bool operator==(const Square& lhs, const vector<string>& rhs) {
+	return lhs.equal(rhs);
+}
+inline istream& operator>>(istream&is, Square& sq) {
+	return sq.read(is);
+}
+int Square::match(const Square& target) {
+	vector<string> tmp(sz);
+	for (auto i = 1; i <= 4; ++i) {
+		tmp = transform(i, sq);
+		if (target==tmp)
+			return i;
+	}
+	for (auto i = 1; i <= 3; ++i)
+		if (target==transform(i, tmp))
+			return 5;
+	if (equal(target))
+		return 6;
+	return 7;
+}
+
+
+int main() {
+	ofstream fout(PROG_ID".out");
+	ifstream fin(PROG_ID".in");
+	int s;
+	fin >> s;
+	Square source(s), target(s);
+	fin >> source >> target;
+	fout << source.match(target) << endl;
+	return 0;
 }
 #endif
