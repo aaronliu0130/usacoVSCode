@@ -1,3 +1,4 @@
+#if 0
 /*
 ID: aaronli2
 TASK: crypt1
@@ -48,3 +49,4 @@ int main()
     fout<<res<<endl;
     return 0;
 }
+#endif
