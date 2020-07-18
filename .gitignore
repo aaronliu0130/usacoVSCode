@@ -1,3 +1,9 @@
+*
+!/**/*.*
 /.vscode/
 /Debug/
-/io/*.out
+/**/*.out
+/**/*.pyc
+/**/*.exe
+/**/*.in
+/Department of Anomalies/
