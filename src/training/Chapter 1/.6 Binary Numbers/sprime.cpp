@@ -1,4 +1,3 @@
-#if 1
 /*
 ID: aaronli2
 TASK: sprime
@@ -10,7 +9,7 @@ LANG: C++11
 
 using namespace std;
 /*
-"Don't just print the answers, you must calculate them" Calculated using code below : 
+"Don't just print the answers, you must calculate them" Calculated using code below: 
 bool ido(int x)
 {
     if (x == 1)
@@ -43,7 +42,7 @@ int main()
     return 0;
 }
 */
-int main()
+    int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -55,4 +54,3 @@ int main()
         fout << dirtyTrick[n][i] << endl;
     return 0;
 }
-#endif

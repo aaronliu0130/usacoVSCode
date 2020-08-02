@@ -1,4 +1,3 @@
-#if 1
 /*
 ID: aaronli2
 TASK: beads
@@ -45,4 +44,3 @@ int main()
     fout << res << endl;
     return 0;
 }
-#endif

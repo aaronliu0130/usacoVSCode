@@ -55,10 +55,10 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("maze1.out");
-    ifstream cin("maze1.in");
-    int cnt,ans;
-    cin >> m >> n;
+    ofstream fout("maze1.out");
+    ifstream fin("maze1.in");
+    int cnt, ans;
+    fin >> m >> n;
     for (int i = 1; i <= 2 * n + 1; i++)
     {
         for (int j = 1; j <= 2 * m + 1; j++)
@@ -67,11 +67,11 @@ int main()
         }
     }
     string temp;
-    getline(cin, temp);
+    getline(fin, temp);
     strcpy(map[0], temp.c_str());
     for (int i = 1; i <= 2 * n + 1; i++)
     {
-        getline(cin, temp);
+        getline(fin, temp);
         strcpy(map[i] + 1, temp.c_str());
         for (int j = 1; j <= 2 * m + 1; j++)
         {
@@ -93,6 +93,6 @@ int main()
                 ans = max(ans, dis[i][j]);
         }
     }
-    cout << ans << '\n';
+    fout << ans << '\n';
     return 0;
 }

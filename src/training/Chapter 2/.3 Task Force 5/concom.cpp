@@ -25,12 +25,12 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("concom.out");
-    ifstream cin("concom.in");
-    cin >> m;
+    ofstream fout("concom.out");
+    ifstream fin("concom.in");
+    fin >> m;
     for (int i(1); i <= m; i++)
     {
-        cin >> o >> p >> a[o][p];
+        fin >> o >> p >> a[o][p];
         ak[o][++a0[o]] = p;
     }
 
@@ -51,7 +51,7 @@ int main()
         for (int j(1); j <= 100; j++)
             if (b[i][j] == 1 && i != j)
             {
-                cout << i << ' ' << j << '\n';
+                fout << i << ' ' << j << '\n';
             }
     return 0;
 }

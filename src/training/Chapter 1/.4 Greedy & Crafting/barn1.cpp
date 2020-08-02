@@ -1,4 +1,3 @@
-#if 0
 /*
 ID: aaronli2
 TASK: barn1
@@ -37,4 +36,3 @@ int main()
     fout << ans << endl;
     return 0;
 }
-#endif

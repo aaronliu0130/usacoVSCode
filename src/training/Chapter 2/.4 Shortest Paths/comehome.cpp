@@ -52,11 +52,11 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("comehome.out");
-    ifstream cin("comehome.in");
+    ofstream fout("comehome.out");
+    ifstream fin("comehome.in");
     int p;
     char r;
-    cin >> p;
+    fin >> p;
     for (int i = 1; i <= 52; i++)
         for (int j = 1; j <= 51; j++)
             map[i][j] = INT32_MAX;
@@ -66,7 +66,7 @@ int main()
         char x, y;
         int weight;
         int xx, yy;
-        cin >> x >> y >> weight;
+        fin >> x >> y >> weight;
         if (x >= 'a' && x <= 'z')
             xx = x - 'a' + 1;
         else
@@ -90,6 +90,6 @@ int main()
         }
     }
     r = point - 27 + 'A';
-    cout << r << ' ' << hh << '\n';
+    fout << r << ' ' << hh << '\n';
     return 0;
 }

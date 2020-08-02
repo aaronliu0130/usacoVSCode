@@ -1,4 +1,3 @@
-#if 1
 /*
 ID: aaronli2
 TASK: pprime
@@ -823,4 +822,3 @@ int main()
     }
     return 0;
 }
-#endif

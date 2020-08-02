@@ -1,4 +1,3 @@
-#if 0
 /*
 ID: aaronli2
 TASK: milk
@@ -40,4 +39,3 @@ int main()
     fout << res << endl;
     return 0;
 }
-#endif

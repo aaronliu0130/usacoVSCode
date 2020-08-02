@@ -7,9 +7,8 @@ LANG: C++11
 #include <fstream>
 #include <string>
 #include <queue>
-#define FOR(i, a, b) for (int i = a; i < b; i++)
 using namespace std;
-int a[51][51] = {0}, comp[51][51], s[2501], num, xdet[4] = {-1, 0, 1, 0}, ydet[4] = {0, 1, 0, -1};
+int a[51][51] = {0}, comp[51][51], s[2501], num, dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
 void flood_fill(int i, int j)
 {
     num++;
@@ -24,26 +23,8 @@ void flood_fill(int i, int j)
         comp[k.first][k.second] = num, ++s[num];
         for (int z = 0; z < 4; z++)
             if ((a[k.first][k.second] & (1 << z)) == 0)
-                if (comp[k.first + xdet[z]][k.second + ydet[z]] == 0)
-                    todo.push(make_pair(k.first + xdet[z], k.second + ydet[z]));
-    }
-}
-void floodFill(int i, int j)
-{
-    ++num;
-    queue<pair<int, int>> q;
-    q.push(make_pair(i, j));
-    while (q.size())
-    {
-        pair<int, int> u = q.front();
-        q.pop();
-        if (comp[u.first][u.second] || u.first < 0 || u.second < 0)
-            continue;
-        comp[u.first][u.second] = num, ++s[num];
-        for (int k = 0; k < 4; k++)
-            if ((a[u.first][u.second] & (2 ^ k)) == 0)
-                if (comp[u.first + xdet[k]][u.second + ydet[k]] == 0)
-                    q.push(make_pair(u.first + xdet[k], u.second + ydet[k]));
+                if (comp[k.first + dx[z]][k.second + dy[z]] == 0)
+                    todo.push(make_pair(k.first + dx[z], k.second + dy[z]));
     }
 }
 int main()
@@ -72,11 +53,11 @@ int main()
         for (int j = 0; j < n; j++)
             for (int z = 0; z < 4; z++)
                 if (a[i][j] & (1 << z))
-                    if (i + xdet[z] >= 0 && i + xdet[z] < m)
-                        if (j + ydet[z] >= 0 && j + ydet[z] < n)
+                    if (i + dx[z] >= 0 && i + dx[z] < m)
+                        if (j + dy[z] >= 0 && j + dy[z] < n)
                         {
-                            int ans = s[comp[i + xdet[z]][j + ydet[z]]];
-                            if (comp[i + xdet[z]][j + ydet[z]] != comp[i][j])
+                            int ans = s[comp[i + dx[z]][j + dy[z]]];
+                            if (comp[i + dx[z]][j + dy[z]] != comp[i][j])
                                 ans += s[comp[i][j]];
                             if (ans > max)
                             {

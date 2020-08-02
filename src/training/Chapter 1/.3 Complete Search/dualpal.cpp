@@ -1,4 +1,3 @@
-#if 0
 /*
 ID: aaronli2
 TASK: dualpal
@@ -56,4 +55,3 @@ int main()
     }
     return 0;
 }
-#endif

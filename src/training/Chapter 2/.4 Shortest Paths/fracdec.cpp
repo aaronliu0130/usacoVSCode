@@ -13,12 +13,12 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("fracdec.out");
-    ifstream cin("fracdec.in");
+    ofstream fout("fracdec.out");
+    ifstream fin("fracdec.in");
     int n, d, sum, len;
     string ans;
-    int pd[100005]={0};
-    cin >> n >> d;
+    int pd[100005] = {0};
+    fin >> n >> d;
     int k(n / d), w(-1);
     do
     {
@@ -55,17 +55,17 @@ int main()
     {
         if (i == w)
         {
-            cout << '(';
+            fout << '(';
             i--;
             w = -1;
         }
 
         else
-            cout << ans[i];
+            fout << ans[i];
         sum++;
         if (sum % 76 == 0)
-            cout << '\n';
+            fout << '\n';
     }
-    cout << '\n';
+    fout << '\n';
     return 0;
 }

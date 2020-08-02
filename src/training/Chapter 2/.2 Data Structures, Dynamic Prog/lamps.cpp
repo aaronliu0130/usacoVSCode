@@ -4,7 +4,7 @@ TASK: lamps
 LANG: C++11
 */
 #include <queue>
-#include <cstdio>
+#include <fstream>
 #include <vector>
 #include <cstdlib>
 #include <iostream>
@@ -40,20 +40,22 @@ inline void count_(int i, int j, int k, int l)
 }
 int main()
 {
-    freopen("lamps.in", "r", stdin);
-    freopen("lamps.out", "w", stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    ofstream fout("preface.out");
+    ifstream fin("preface.in");
     int x;
-    scanf("%d%d%d",&n,&c,&x);
+    fin >> n >> c >> x;
     while (x != -1)
     {
         light.push_back(x);
-        scanf("%d",&x);
+        scanf("%d", &x);
     }
-    scanf("%d",&x);
+    scanf("%d", &x);
     while (x != -1)
     {
         dark.push_back(x);
-        scanf("%d",&x);
+        scanf("%d", &x);
     }
     for (int i = 0; i <= 1; i++)
     {
@@ -71,13 +73,13 @@ int main()
     }
     if (ans.empty())
     {
-        printf("IMPOSSIBLE\n");
+        fout << "IMPOSSIBLE\n";
     }
     else
     {
         while (!ans.empty())
         {
-            cout << ans.top() << endl;
+            fout << ans.top() << '\n';
             ans.pop();
         }
     }

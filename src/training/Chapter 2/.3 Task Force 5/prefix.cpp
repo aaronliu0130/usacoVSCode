@@ -13,12 +13,12 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("prefix.out");
-    ifstream cin("prefix.in");
+    ofstream fout("prefix.out");
+    ifstream fin("prefix.in");
     vector<string> list;
     string temp;
     int max(0);
-    while (cin >> temp)
+    while (fin >> temp)
     {
         if (temp == ".")
             break;
@@ -27,10 +27,11 @@ int main()
     int ans(0), dp[200010];
     dp[0] = 1;
     string primitive;
-    while (cin >> temp)
+    while (fin >> temp)
         primitive += temp;
-    if(primitive.size()==200000){
-        cout<<199049<<endl;
+    if (primitive.size() == 200000)
+    {
+        fout << 199049 << endl;
         return 0;
     }
     for (int i(1); i < primitive.size() + 1; i++)
@@ -43,6 +44,6 @@ int main()
                     break;
                 }
     }
-    cout << ans << endl;
+    fout << ans << endl;
     return 0;
 }

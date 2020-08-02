@@ -1,4 +1,3 @@
-#if 0
 /*
 ID: aaronli2
 TASK: crypt1
@@ -35,18 +34,19 @@ int main()
     cin.tie(0);
     ofstream fout("crypt1.out");
     ifstream fin("crypt1.in");
-    int n(0);
-    fin>>n;
+    int n;
+    fin >> n;
     int bucketi;
-    for(int i=0;i<n;i++){
-        fin>>bucketi;
-        bucket[bucketi]=1;
+    for (int i = 0; i < n; i++)
+    {
+        fin >> bucketi;
+        bucket[bucketi] = 1;
     }
     int res(0);
-    for(int i=100;i<1000;i++)
-        for(int j=10;j<100;j++)
-            if(chkTimes(i,j))res++;
-    fout<<res<<endl;
+    for (int i = 100; i < 1000; i++)
+        for (int j = 10; j < 100; j++)
+            if (chkTimes(i, j))
+                res++;
+    fout << res << endl;
     return 0;
 }
-#endif

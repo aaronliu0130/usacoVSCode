@@ -13,15 +13,15 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    ofstream cout("money.out");
-    ifstream cin("money.in");
+    ofstream fout("money.out");
+    ifstream fin("money.in");
     long long v, n, h[30], dp[10005] = {1};
-    cin >> v >> n;
+    fin >> v >> n;
     for (int i = (0); i < v; i++)
-        cin >> h[i];
+        fin >> h[i];
     for (int i = (0); i < v; i++)
         for (int j = h[i]; j <= n; j++)
             dp[j] += dp[j - h[i]];
-    cout << dp[n] << '\n';
+    fout << dp[n] << '\n';
     return 0;
 }

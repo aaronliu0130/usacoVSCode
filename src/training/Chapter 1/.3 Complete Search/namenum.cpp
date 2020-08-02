@@ -1,4 +1,3 @@
-#if 0
 /*
 ID: aaronli2
 TASK: namenum
@@ -41,4 +40,3 @@ int main()
         fout << "NONE" << endl;
     return 0;
 }
-#endif
