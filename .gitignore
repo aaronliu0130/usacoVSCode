@@ -7,3 +7,5 @@
 /**/*.exe
 /**/*.in
 /Department of Anomalies/
+/.settings/
+.project

@@ -8,4 +8,4 @@ To build, use the command `g++ -std=c++11 -o "<problem-name>" <problem-name>.cpp
 
 ## Status
 
-Currently, all 1.2 problems and `milk2` have been completely resolved. `transform` is unfinished, and all others have not started. Yet.
+Currently, all problems 1.1~2.4 have been finished.
