@@ -1,6 +1,7 @@
 # usaco
 
 This is the repository for my usaco solutions.
+Occasionally I also post my UVAOJ solutions.
 Most of the code are completly done by me, some code have the thinking from someone else, and some code have been refined after reading analysis.
 
 ## Build

@@ -1,13 +1,11 @@
-*
-!/**/*.*
-/.vscode/
-/Debug/
-/**/*.out
-/**/*.pyc
-/**/*.exe
-/**/*.in
-/Department of Anomalies/
-/.settings/
+Department of Anomalies/
+.vscode/
+Debug/
+**/*.out
+**/*.pyc
+**/*.exe
+**/*.in
+.settings/
 .project
 .cproject
-/.metadata/
+.metadata/

@@ -16,8 +16,8 @@ typedef struct point {
 } point;
 double operator-(const point b, const point a) {
     return sqrt(
-        (double)(b.x - a.x) * (b.x - a.x)
-        + (double)(b.y - a.y) * (b.y - a.y));
+        static_cast<double>(b.x - a.x) * (b.x - a.x)
+        + static_cast<double>(b.y - a.y) * (b.y - a.y));
 }
 void mark(int &i, int &nf, array<int, 160> &f,
     array<array<double, 160>, 160> &dis, int &n) {
