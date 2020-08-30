@@ -1,43 +1,35 @@
 /*
-ID: aaronli2
-TASK: humble
-LANG: C++11
-*/
+ ID: aaronli2
+ TASK: humble
+ LANG: C++11
+ */
 #include <algorithm>    // std::sort
 #include <fstream>
-#include <set>
+#include <queue>
 #include <vector>
 using namespace std;
 
 int main() {
 	ofstream fout("humble.out");
 	ifstream fin("humble.in");
-	int k, n;
+	int k, n, p;
 	fin >> k >> n;
-	vector<long long> primes(k);
-	set<long long> q;
-	for (int i=0; i < k; ++i){
-		fin >> primes[i];
-		q.insert(primes[i]);
+	auto comp = [](const vector<long long> &lth, const vector<long long> &rth) {
+		return lth[0] > rth[0];
+	};
+	priority_queue<vector<long long>, vector<vector<long long>>,
+			decltype( comp )> q(comp);
+	for (int i = 0; i < k; ++i) {
+		fin >> p;
+		q.push( { p, p, 0 });
 	}
-	sort(primes.begin(),primes.end());
-	long long ans=0,cap=ans,next;
-	for (int i=0; i < n; ++i) {
-		ans=*q.begin();
-		q.erase(q.begin());
-		if(q.size()<=n-i){
-			cap=max(cap,ans*primes[k-1]);
-			for (int j=0;j<k;++j)
-				q.insert(ans*primes[j]);
-		}
-		else
-		for (int j=0;j<k;++j){
-			next=ans*primes[j];
-			if(next>cap)
-				break;
-			q.insert(next);
-		}
-	}
-	fout << ans << '\n';
+
+	vector<long long> next, ans(n);
+	ans[0] = 1;
+	for (int i = 1; i < n; ++i)
+		for (ans[i] = q.top()[0]; ans[i] == (next = q.top())[0];
+				q.pop())
+			q.push( { next[1] * ans[next[2]], next[1], next[2] + 1 });
+	fout << q.top()[0] << '\n';
 	return 0;
 }
