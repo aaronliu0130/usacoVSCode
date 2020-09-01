@@ -8,28 +8,38 @@
 #include <queue>
 #include <vector>
 using namespace std;
-
+class node {
+public:
+	node(int prime) :next(1), prime(prime), pos(0) {}
+	long long next;
+	int prime;
+	int pos;
+	node* update(long long new_val){
+		next=new_val*prime;
+		++pos;
+		return this;
+	}
+};
 int main() {
 	ofstream fout("humble.out");
 	ifstream fin("humble.in");
 	int k, n, p;
 	fin >> k >> n;
-	auto comp = [](const vector<long long> &lth, const vector<long long> &rth) {
-		return lth[0] > rth[0];
+	auto comp = [](const node *lth, const node *rth) {
+		return lth->next > rth->next;
 	};
-	priority_queue<vector<long long>, vector<vector<long long>>,
-			decltype( comp )> q(comp);
+	vector<node> nodes(k,0);
+	priority_queue<node*, vector<node*>, decltype( comp )> q(comp);
 	for (int i = 0; i < k; ++i) {
 		fin >> p;
-		q.push( { p, p, 0 });
+		nodes[i]=node(p);
+		q.push(&nodes[i]);
 	}
-
-	vector<long long> next, ans(n);
-	ans[0] = 1;
-	for (int i = 1; i < n; ++i)
-		for (ans[i] = q.top()[0]; ans[i] == (next = q.top())[0];
-				q.pop())
-			q.push( { next[1] * ans[next[2]], next[1], next[2] + 1 });
-	fout << q.top()[0] << '\n';
+	node *nd;
+	vector<long long> ans(n);
+	for (int i = 0; i < n; ++i)
+		for (ans[i] = q.top()->next; ans[i] == (nd = q.top())->next; q.pop())
+			q.push(nd->update(ans[nd->pos]));
+	fout << q.top()->next << '\n';
 	return 0;
 }
